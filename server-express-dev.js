@@ -18,6 +18,9 @@ const io = socketIO(httpServer);
 
 dbSetup();
 
+app.set('views', path.join(__dirname, 'client'));
+app.set('view engine', 'jade');
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -35,8 +38,18 @@ app.use(express.static(path.join(__dirname, 'public')));
  app.get('/favicon.ico', (req, res) => res.sendFile(path.join(__dirname, 'public', 'favicon.ico')));
 
 // 在你应用 JavaScript 文件中包含了一个 script 标签的 index.html 中处理任何一个 route
+/*
 app.get('*', function (request, response){
 	response.sendFile(path.resolve(__dirname, 'client', 'index.html'))
+});
+*/
+
+app.get(/master/, function (request, response) {
+  response.render('index', { title: 'master客户端', message: 'Hello master客户端!', jsname:'bundle'});
+});
+
+app.get('*', function (request, response) {
+  response.render('index', { title: 'jikekit微信', message: 'Hello wexin!', jsname:'bundle'});
 });
 
 eventService.liveUpdates('posts',io);

@@ -1,0 +1,11 @@
+html
+  head
+    title!= title
+    meta(http-equiv="Content-Type",content="text/html; charset=utf-8")
+    meta(http-equiv="X-UA-Compatible",content="IE=edge")
+    meta(name="viewport",content="width=device-width, initial-scale=1")
+    link(type="text/css",rel="stylesheet",href="http://apps.bdimg.com/libs/fontawesome/4.4.0/css/font-awesome.css")
+  body
+    h1!= message
+    div#app
+    script(src='http://192.168.1.110:9090/build/#{jsname}.js')
